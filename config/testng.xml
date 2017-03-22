@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Login tests suite" verbose="1">
+    <test name="test1">
+        <parameter name="minResults" value="20000"/>
+        <classes>
+            <class name="Tests.LoginToFreestyleTest">
+                <methods>
+                    <include name="testSignIn"/>
+                    <!--<include name="secondTest"/>-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
