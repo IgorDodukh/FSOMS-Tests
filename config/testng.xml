@@ -3,12 +3,16 @@
     <test name="Login test">
         <parameter name="minResults" value="20000"/>
         <classes>
-            <class name="Tests.LoginToFreestyleTest">
-                <methods>
-                    <include name="testSignIn"/>
-                    <include name="openAddCustomersPage"/>
-                </methods>
-            </class>
+            <class name="Tests.LoginToFreestyleTest"/>
+                <!--<methods>-->
+                    <!--<include name="testSignIn"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <class name="Tests.AddCustomerTest"/>
+                <!--<methods>-->
+                    <!--<include name="openAddCustomersPage"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
     </test>
 </suite>

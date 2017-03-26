@@ -1,5 +1,6 @@
 package Settings;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ import java.util.function.Function;
  * Created by Ihor on 3/22/2017.
  */
 public class BrowserSettings {
-    private WebDriver driver;
+    private static WebDriver driver;
 
     public WebDriver getDriver() {
         return driver;
@@ -36,17 +37,19 @@ public class BrowserSettings {
                     "https://qa05.freestylecommerce.info/web",
                     "https://my.freestylecommerce.com/web"));
 
-    @BeforeSuite
+    @BeforeTest
     public void setUp() {
         log("Initialize WebDriver");
         String chromeDriverPath = System.getProperty("chrome.driver.executable");
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(fsEnvironment.get(2));
     }
 
-    @AfterSuite
+    @AfterTest
     public void tearDown() {
         log("Quit from WebDriver");
         driver.quit();
@@ -58,8 +61,8 @@ public class BrowserSettings {
 
     public void explicitWaitUntilVisible(WebElement locator, String textMessage) {
         log("Waiting appearing of element: " + locator.toString());
-        FluentWait wait = new WebDriverWait(driver, 20).withMessage(textMessage);
-        wait.until((Function) ExpectedConditions.visibilityOf(locator));
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("lst-ib")));
     }
 
     public void explicitWaitUntilUnvisible(WebElement locator, String textMessage) {

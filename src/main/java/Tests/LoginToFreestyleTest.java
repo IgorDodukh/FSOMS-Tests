@@ -39,10 +39,10 @@ public class LoginToFreestyleTest extends BrowserSettings {
         Assert.assertTrue(homePageObject.getHomePageDashboardUserName().contains("Hi, "));
     }
 
-    @Test
-    public void openAddCustomersPage() {
-        log("Open 'Add Customer' page");
-        navigationMenu = new NavigationMenu(driver);
-        navigationMenu.openAddCustomersPage();
-    }
+//    @Test
+//    public void openAddCustomersPage() {
+//        log("Open 'Add Customer' page");
+//        navigationMenu = new NavigationMenu(driver);
+//        navigationMenu.openAddCustomersPage();
+//    }
 }
