@@ -11,22 +11,18 @@ import org.testng.annotations.Test;
  * Created by Ihor on 3/22/2017.
  */
 public class LoginToFreestyleTest extends BrowserSettings {
-    public  WebDriver driver = getDriver();
+    public  WebDriver driver;
     private HomePage homePageObject;
     private LoginPage loginPageObject;
 
     private String userLogin = "IgorQA@dydacomp.biz";
     private String userPassword = "Password#1";
-//
-//    @BeforeMethod(alwaysRun = true)
-//    public void openLoginPage() {
-//        loginPageObject = new LoginPage(driver).open();
-//    }
 
     @Test
-    public void testSignIn() {
+    public void testSignIn() throws InterruptedException {
+        driver = getDriver();
         log("Create Login Page object");
-        loginPageObject = new LoginPage(getDriver());
+        loginPageObject = new LoginPage(driver);
 
         log("Verify login page title");
         String loginPageTitle = loginPageObject.getLoginTitle();
@@ -35,9 +31,9 @@ public class LoginToFreestyleTest extends BrowserSettings {
         log("Login to application");
         loginPageObject.loginToFreestyle(userLogin, userPassword);
 
-        homePageObject = new HomePage(getDriver());
+        homePageObject = new HomePage(driver);
 
-        log("Verify login page title");
-        Assert.assertTrue(homePageObject.getHomePageDashboardUserName().contains("Clint"));
+        log("Verify home page greeting 'Hi, user'");
+        Assert.assertTrue(homePageObject.getHomePageDashboardUserName().contains("Hi, "));
     }
 }

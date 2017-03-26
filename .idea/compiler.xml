@@ -9,8 +9,8 @@
         <module name="FSOMS-Tests" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="FSOMS-Tests" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="FSOMS-Tests" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
