@@ -9,18 +9,15 @@ import org.openqa.selenium.support.PageFactory;
  * Created by Ihor on 3/22/2017.
  */
 public class NavigationMenu {
-    private WebDriver driver;
+    private final WebDriver driver;
 
     @FindBy(className = "glyphicon glyphicon-home")
     WebElement homeNavigationIcon;
 
-//    @FindBy(className = "glyphicon glyphicon-user")
-//    WebElement customerNavigationIcon;
-
     @FindBy(xpath = "//div[@class='nav-left-item'][1]")
     WebElement customerNavigationIcon;
 
-    @FindBy(partialLinkText = "CreateCustomerView")
+    @FindBy(xpath = "//div[@class='nav-left-item'][1]/div/a[2]")
     WebElement addCustomerLink;
 
     public NavigationMenu(WebDriver driver) {
@@ -32,8 +29,16 @@ public class NavigationMenu {
         homeNavigationIcon.click();
     }
 
-    public void clickAddCustomerLink() {
+    private void clickCustomersLink() {
         customerNavigationIcon.click();
+    }
+
+    private void clickAddCustomerItem() {
         addCustomerLink.click();
+    }
+
+    public void openAddCustomersPage() {
+        this.clickCustomersLink();
+        this.clickAddCustomerItem();
     }
 }

@@ -1,5 +1,6 @@
 package Tests;
 
+import Components.NavigationMenu;
 import Pages.HomePage;
 import Pages.LoginPage;
 import Settings.BrowserSettings;
@@ -14,6 +15,7 @@ public class LoginToFreestyleTest extends BrowserSettings {
     public  WebDriver driver;
     private HomePage homePageObject;
     private LoginPage loginPageObject;
+    private NavigationMenu navigationMenu;
 
     private String userLogin = "IgorQA@dydacomp.biz";
     private String userPassword = "Password#1";
@@ -35,5 +37,12 @@ public class LoginToFreestyleTest extends BrowserSettings {
 
         log("Verify home page greeting 'Hi, user'");
         Assert.assertTrue(homePageObject.getHomePageDashboardUserName().contains("Hi, "));
+    }
+
+    @Test
+    public void openAddCustomersPage() {
+        log("Open 'Add Customer' page");
+        navigationMenu = new NavigationMenu(driver);
+        navigationMenu.openAddCustomersPage();
     }
 }

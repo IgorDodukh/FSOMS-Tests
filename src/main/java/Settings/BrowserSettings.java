@@ -43,7 +43,7 @@ public class BrowserSettings {
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://qa05.freestylecommerce.info/web");
+        driver.get(fsEnvironment.get(2));
     }
 
     @AfterSuite
