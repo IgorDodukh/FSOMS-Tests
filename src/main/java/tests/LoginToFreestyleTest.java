@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
-import Pages.HomePage;
-import Pages.LoginPage;
-import Settings.BrowserSettings;
+import pages.HomePage;
+import pages.LoginPage;
+import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

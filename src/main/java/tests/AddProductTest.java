@@ -1,11 +1,11 @@
-package Tests;
+package tests;
 
-import Components.ContextualBar;
-import Components.NavigationMenu;
-import Pages.AddProductPage;
-import Pages.ProductInventory.AddInventoryPage;
-import Pages.ProductInventory.ProductInventoryPage;
-import Settings.BrowserSettings;
+import сomponents.ContextualBar;
+import сomponents.NavigationMenu;
+import pages.AddProductPage;
+import pages.productInventory.AddInventoryPage;
+import pages.productInventory.ProductInventoryPage;
+import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;

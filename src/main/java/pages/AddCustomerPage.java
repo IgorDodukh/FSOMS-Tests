@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Settings.BrowserSettings;
+import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

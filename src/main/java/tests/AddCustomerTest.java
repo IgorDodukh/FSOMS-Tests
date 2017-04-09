@@ -1,9 +1,9 @@
-package Tests;
+package tests;
 
-import Components.ContextualBar;
-import Components.NavigationMenu;
-import Pages.AddCustomerPage;
-import Settings.BrowserSettings;
+import сomponents.ContextualBar;
+import сomponents.NavigationMenu;
+import pages.AddCustomerPage;
+import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
