@@ -1,7 +1,7 @@
 package tests;
 
-import сomponents.ContextualBar;
-import сomponents.NavigationMenu;
+import components.ContextualBar;
+import components.NavigationMenu;
 import pages.AddCustomerPage;
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;

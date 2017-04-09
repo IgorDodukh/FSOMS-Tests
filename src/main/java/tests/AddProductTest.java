@@ -1,7 +1,7 @@
 package tests;
 
-import сomponents.ContextualBar;
-import сomponents.NavigationMenu;
+import components.ContextualBar;
+import components.NavigationMenu;
 import pages.AddProductPage;
 import pages.productInventory.AddInventoryPage;
 import pages.productInventory.ProductInventoryPage;
