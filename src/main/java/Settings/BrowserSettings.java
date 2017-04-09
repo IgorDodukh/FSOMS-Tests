@@ -5,12 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
 import java.util.ArrayList;
@@ -46,7 +43,7 @@ public class BrowserSettings {
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1366, 768));
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(fsEnvironment.get(2));
     }
@@ -61,15 +58,15 @@ public class BrowserSettings {
         Reporter.log(logMessage + "<br>");
     }
 
-    public void explicitWaitUntilVisible(WebElement locator, String textMessage) {
+    public void explicitWaitUntilVisible(WebElement locator) {
         log("Waiting appearing of element: " + locator.toString());
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until((Function) ExpectedConditions.visibilityOf(locator));
     }
 
-    public void explicitWaitUntilUnvisible(WebElement locator, String textMessage) {
-        log("Waiting disappearing of element: " + locator.toString());
-        FluentWait wait = new WebDriverWait(driver, 20).withMessage(textMessage);
-        wait.until((Function) ExpectedConditions.not(ExpectedConditions.visibilityOf(locator)));
-    }
+//    public void explicitWaitUntilUnvisible(WebElement locator, String textMessage) {
+//        log("Waiting disappearing of element: " + locator.toString());
+//        FluentWait wait = new WebDriverWait(driver, 20).withMessage(textMessage);
+//        wait.until((Function) ExpectedConditions.not(ExpectedConditions.visibilityOf(locator)));
+//    }
 }

@@ -31,7 +31,7 @@ public class LoginPage extends BrowserSettings {
     @FindBy(id = "msgActiveSession")
     WebElement activeSessionMessage;
 
-    @FindBy(xpath = "//div[@id=\"msgActiveSession\"]//div[2]/button")
+    @FindBy(xpath = "//div[@id='msgActiveSession']//div[2]/button")
     WebElement continueLoginButton;
 
     @FindBy(id = "msgServerError")
@@ -77,6 +77,7 @@ public class LoginPage extends BrowserSettings {
     }
 
     public String getLoginTitle() {
+        log("Getting page title on the Login page");
         return titleText.getText();
     }
 

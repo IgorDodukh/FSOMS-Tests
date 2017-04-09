@@ -1,18 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Add Customer suite" verbose="1">
-    <test name="Login test">
-        <parameter name="minResults" value="20000"/>
+    <test name="Add Customer test">
+        <parameter name="cardNumber" value="4005550000000019"/>
         <classes>
             <class name="Tests.LoginToFreestyleTest"/>
-                <!--<methods>-->
-                    <!--<include name="testSignIn"/>-->
-                <!--</methods>-->
-            <!--</class>-->
             <class name="Tests.AddCustomerTest"/>
-                <!--<methods>-->
-                    <!--<include name="openAddCustomersPage"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+        </classes>
+    </test>
+    <test name="Add Product test">
+        <classes>
+            <class name="Tests.LoginToFreestyleTest"/>
+            <class name="Tests.AddProductTest"/>
         </classes>
     </test>
 </suite>
