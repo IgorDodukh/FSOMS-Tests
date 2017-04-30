@@ -1,7 +1,7 @@
 package tests;
 
-import pages.HomePage;
-import pages.LoginPage;
+import pages.freestyle.HomePage;
+import pages.freestyle.LoginPage;
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Ihor on 3/22/2017.
  */
-public class LoginToFreestyleTest extends BrowserSettings {
+public class LoginToFS extends BrowserSettings {
     public  WebDriver driver;
     private HomePage homePageObject;
     private LoginPage loginPageObject;

@@ -1,6 +1,5 @@
 package settings;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,10 +24,6 @@ public class BrowserSettings {
         return driver;
     }
 
-    private String browser = System.getProperty("browser");
-    private String reportsDirectory = System.getProperty("reportsDirectory");
-    private String reportsPath = System.getProperty("reportsPath");
-
     //    List of Environments
     public static final ArrayList<String> fsEnvironment = new ArrayList<>(
             Arrays.asList("https://qa01.freestylecommerce.info/web",
@@ -43,7 +38,6 @@ public class BrowserSettings {
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
         driver.manage().deleteAllCookies();
-        driver.manage().window().setSize(new Dimension(1366, 768));
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(fsEnvironment.get(2));
     }
@@ -55,6 +49,7 @@ public class BrowserSettings {
     }
 
     public static void log(String logMessage) {
+        System.out.println("> " + logMessage);
         Reporter.log(logMessage + "<br>");
     }
 
@@ -62,6 +57,17 @@ public class BrowserSettings {
         log("Waiting appearing of element: " + locator.toString());
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until((Function) ExpectedConditions.visibilityOf(locator));
+    }
+    public void explicitWaitUntilUnvisible(WebElement locator) {
+        log("Waiting appearing of element: " + locator.toString());
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until((Function) ExpectedConditions.visibilityOf(locator));
+    }
+
+    public void explicitWaitUntilClickable(WebElement locator) {
+        log("Waiting appearing of element: " + locator.toString());
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until((Function) ExpectedConditions.elementToBeClickable(locator));
     }
 
 //    public void explicitWaitUntilUnvisible(WebElement locator, String textMessage) {

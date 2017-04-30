@@ -1,4 +1,4 @@
-package pages;
+package pages.freestyle;
 
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
@@ -53,11 +53,13 @@ public class LoginPage extends BrowserSettings {
         PageFactory.initElements(driver, this);
     }
 
-    private void setUserName(String strUserName) {
+    private void setUsername(String strUserName) {
+        log("Set FS username");
         usernameField.sendKeys(strUserName);
     }
 
     private void setPassword(String strPassword) {
+        log("Set FS password");
         passwordField.sendKeys(strPassword);
     }
 
@@ -81,14 +83,14 @@ public class LoginPage extends BrowserSettings {
         return titleText.getText();
     }
 
-//    public LoginPage open() {
+//    public MagentoLoginPage open() {
 //        log("Open login page");
 //        driver.get("https://qa05.freestylecommerce.info/web");
 //        return this;
 //    }
 
     public void loginToFreestyle(String username, String password) throws InterruptedException {
-        this.setUserName(username);
+        this.setUsername(username);
         this.setPassword(password);
         this.clickLogin();
     }

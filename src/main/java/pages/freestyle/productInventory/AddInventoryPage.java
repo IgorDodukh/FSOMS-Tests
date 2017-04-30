@@ -1,4 +1,4 @@
-package pages.productInventory;
+package pages.freestyle.productInventory;
 
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;

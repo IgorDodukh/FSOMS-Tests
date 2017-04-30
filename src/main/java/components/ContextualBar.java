@@ -1,10 +1,10 @@
 package components;
 
-import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import settings.BrowserSettings;
 
 /**
  * Created by Ihor on 3/23/2017.
@@ -30,6 +30,9 @@ public class ContextualBar extends BrowserSettings {
     @FindBy(xpath = "//button[@class='primary-button']")
     WebElement messageBoxOkButton;
 
+    @FindBy(id = "waitingPopupShadow")
+    WebElement waitingPopupShadow;
+
     public ContextualBar(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -42,6 +45,7 @@ public class ContextualBar extends BrowserSettings {
 
     private void clickSaveButton() {
         log("Click 'Save' button");
+        explicitWaitUntilClickable(saveButton);
         saveButton.click();
     }
 
@@ -51,13 +55,17 @@ public class ContextualBar extends BrowserSettings {
     }
 
     private void confirmCustomerMessageBox() {
-        explicitWaitUntilVisible(customerMessageBox);
+        log("Confirm Customer Message Box");
+        explicitWaitUntilClickable(customerMessageBoxOkButton);
         customerMessageBoxOkButton.click();
+        explicitWaitUntilClickable(saveButton);
     }
 
     private void confirmMessageBox() {
-        explicitWaitUntilVisible(messageBoxOkButton);
+        log("Confirm Message Box");
+        explicitWaitUntilClickable(messageBoxOkButton);
         messageBoxOkButton.click();
+        explicitWaitUntilClickable(saveButton);
     }
 
     public void saveCustomerChanges() {

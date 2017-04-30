@@ -1,4 +1,4 @@
-package pages;
+package pages.freestyle;
 
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;

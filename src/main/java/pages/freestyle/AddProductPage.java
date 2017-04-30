@@ -1,10 +1,11 @@
-package pages;
+package pages.freestyle;
 
-import settings.BrowserSettings;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import settings.BrowserSettings;
 
 /**
  * Created by Ihor on 4/8/2017.
@@ -60,7 +61,7 @@ public class AddProductPage extends BrowserSettings {
     @FindBy(name = "chxBox_supplier")
     WebElement selectSupplierCheckbox;
 
-    @FindBy(id = "add_selected_supplier")
+    @FindBy(xpath = "//*[@id='add_selected_supplier']")
     WebElement addSelectedSupplierButton;
 
     @FindBy(xpath = "//*[@id='SuppliersItemsTable']/tbody/tr")
@@ -156,7 +157,20 @@ public class AddProductPage extends BrowserSettings {
 
     private void addSelectedSupplier() {
         log("Add selected supplier");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addSelectedSupplierButton);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         addSelectedSupplierButton.click();
+        log("Select the row with selected supplier");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        explicitWaitUntilClickable(addSupplierButton);
         addedSupplierRow.click();
     }
 

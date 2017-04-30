@@ -1,12 +1,10 @@
-package pages;
+package pages.freestyle;
 
-import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import settings.BrowserSettings;
 
 /**
  * Created by Ihor on 3/22/2017.
@@ -60,8 +58,11 @@ public class AddCustomerPage extends BrowserSettings{
     @FindBy(id = "tabShippingAddresses")
     WebElement shippingAddressTab;
 
-    @FindBy(id = "addNewShippingAddressBtn")
+    @FindBy(id = "addNewshippingAddressBtn")
     WebElement addNewShippingAddressButton;
+
+    @FindBy(xpath = "(//input[@class='sameAddBtn primary-button sameBillingAddBtn'])[3]")
+    WebElement sameAsBillingAddressButton;
 
 //Payment Methods tab
     @FindBy(id = "tabPaymentMethods")
@@ -70,11 +71,17 @@ public class AddCustomerPage extends BrowserSettings{
     @FindBy(id = "linkAddNewCard")
     WebElement addNewCardButton;
 
-    @FindBy(id = "card_no")
+    @FindBy(xpath = "(//input[@id='card_no'])[2]")
     WebElement cardNumberField;
 
     @FindBy(xpath = "(//*[@id='card_expYear'])[2]/option[7]")
     WebElement cardExpirationDate;
+
+    @FindBy(xpath = "(//*[@id='linkEditCard'])[2]")
+    WebElement editCreditCardLink;
+
+    @FindBy(xpath = "(//*[@id='linkSaveCard'])[2]")
+    WebElement saveCreditCardLink;
 
 //Customer Info tab
     private void setCustomerFirstNameField(String firstName) {
@@ -132,8 +139,8 @@ public class AddCustomerPage extends BrowserSettings{
         log("Set Billing zip code");
         billingZipField.sendKeys(zip);
         openBillingAddressTab();
-        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) driver ->
-                billingCityField.getText().length() != 0);
+//        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) driver ->
+//                billingCityField.getText().length() != 0);
     }
 
 //Shipping Address tab
@@ -145,6 +152,12 @@ public class AddCustomerPage extends BrowserSettings{
     private void clickAddShippingAddressButton() {
         log("Click 'Add Shipping Address' button");
         addNewShippingAddressButton.click();
+    }
+
+    private void clickSameAsBillingAddressButton() {
+        log("Click 'Same As Billing Address' button");
+        explicitWaitUntilVisible(sameAsBillingAddressButton);
+        sameAsBillingAddressButton.click();
     }
 
 //Payment Methods tab
@@ -168,6 +181,12 @@ public class AddCustomerPage extends BrowserSettings{
         cardExpirationDate.click();
     }
 
+    private void saveCreditCard() {
+        log("Save Credit Card");
+        saveCreditCardLink.click();
+        explicitWaitUntilClickable(editCreditCardLink);
+    }
+
     public void setCustomerInfo(String firstName, String lastName, String phone, String email) {
         this.setCustomerFirstNameField(firstName);
         this.setCustomerLastNameField(lastName);
@@ -178,16 +197,17 @@ public class AddCustomerPage extends BrowserSettings{
     public void setCustomerBillingAddress(String firstName, String lastName, String phone, String addressLine, String zip) {
         this.openBillingAddressTab();
         this.clickAddBillingAddressButton();
+        this.setBillingZipField(zip);
         this.setBillingFirstNameField(firstName);
         this.setBillingLastNameField(lastName);
         this.setBillingPhoneField(phone);
         this.setBillingAddressLine1Field(addressLine);
-        this.setBillingZipField(zip);
     }
 
     public void setCustomerShippingAddress() {
         this.openShippingAddressesTab();
         this.clickAddShippingAddressButton();
+        this.clickSameAsBillingAddressButton();
     }
 
     public void setPaymentMethod(String cardNumber) {
@@ -195,6 +215,7 @@ public class AddCustomerPage extends BrowserSettings{
         this.clickAddNewCardButton();
         this.setCardNumber(cardNumber);
         this.setCardExpirationDate();
+        this.saveCreditCard();
     }
 
 }

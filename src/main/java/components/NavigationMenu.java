@@ -52,6 +52,9 @@ public class NavigationMenu extends BrowserSettings{
     @FindBy(xpath = "//div[@class='nav-left-item'][7]/div/a[1]")
     WebElement settingsLink;
 
+    @FindBy(xpath = "//div[@class='nav-left-item'][7]/div/a[3]")
+    WebElement salesChannelsLink;
+
     public NavigationMenu(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -80,6 +83,7 @@ public class NavigationMenu extends BrowserSettings{
     private void clickAddProductItem() {
         log("Click 'Add Product' menu item");
         addProductLink.click();
+        explicitWaitUntilClickable(productsNavigationIcon);
     }
 
     private void clickSuppliersItem() {
@@ -106,6 +110,18 @@ public class NavigationMenu extends BrowserSettings{
         log("Click 'Bins' menu item");
         binsLink.click();
     }
+
+    private void clickSetupMenu() {
+        log("Click 'Setup' menu item");
+        setupNavigationIcon.click();
+    }
+
+    private void clickSalesChannelsItem() {
+        log("Click 'Sales Channels' menu item");
+        salesChannelsLink.click();
+    }
+
+
 
     public void openAddCustomersPage() {
         this.clickCustomersMenu();
@@ -135,5 +151,10 @@ public class NavigationMenu extends BrowserSettings{
     public void openBinsPage() {
         this.clickInventoryMenu();
         this.clickBinsItem();
+    }
+
+    public void openSalesChannelsPage() {
+        this.clickSetupMenu();
+        this.clickSalesChannelsItem();
     }
 }

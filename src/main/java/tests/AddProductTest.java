@@ -2,13 +2,12 @@ package tests;
 
 import components.ContextualBar;
 import components.NavigationMenu;
-import pages.AddProductPage;
-import pages.productInventory.AddInventoryPage;
-import pages.productInventory.ProductInventoryPage;
+import pages.freestyle.AddProductPage;
 import settings.BrowserSettings;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.freestyle.productInventory.*;
 
 /**
  * Created by Ihor on 4/8/2017.
@@ -18,29 +17,31 @@ public class AddProductTest extends BrowserSettings {
     private NavigationMenu navigationMenu;
     private AddProductPage addProductPage;
     private ContextualBar contextualBar;
-    private ProductInventoryPage productInventoryPage;
     private AddInventoryPage addInventoryPage;
+    private ProductInventoryPage productInventoryPage;
+    private LoginToFS loginToFS;
 
     @Test
-    public void addProduct() {
+    public void addProductWithInventory() throws InterruptedException {
         driver = getDriver();
+        loginToFS = new LoginToFS();
+        loginToFS.testSignIn();
         navigationMenu = new NavigationMenu(driver);
         navigationMenu.openAddProductPage();
-        Assert.assertTrue(driver.getTitle().equals("Add Product"), "Pag title is not expected");
 
         addProductPage = new AddProductPage(driver);
-        addProductPage.setProductInfo("sku", "name", "weigth", "description");
-        addProductPage.setProductPrice("price");
-        addProductPage.setProductSalesChannel("channel name");
-        addProductPage.setProductSupplier("unit cost");
+//        Assert.assertTrue(driver.getTitle().equals("Add Product"), "Page title is not expected");
+
+        Assert.assertEquals(driver.getTitle(), "Create Product", "Page title is not expected");
+
+        addProductPage.setProductInfo("sku", "name", "10", "description");
+        addProductPage.setProductPrice("10");
+        addProductPage.setProductSalesChannel("Call Center");
+        addProductPage.setProductSupplier("10");
 
         contextualBar = new ContextualBar(driver);
         contextualBar.saveCustomerChanges();
-    }
 
-    @Test
-    public void addProductInventory() {
-        driver = getDriver();
         navigationMenu = new NavigationMenu(driver);
         navigationMenu.openProductInventoryPage();
         Assert.assertTrue(driver.getTitle().equals("Product Inventory"), "Pag title is not expected");
@@ -49,8 +50,8 @@ public class AddProductTest extends BrowserSettings {
         productInventoryPage.openAddInventoryPage("sku");
 
         addInventoryPage = new AddInventoryPage(driver);
-        addInventoryPage.addInventoryInfo("lonNum", "unitCost", "qty", "notes");
-        addInventoryPage.addInventoryBin("binName", "binPriority");
+        addInventoryPage.addInventoryInfo("lonNum", "10", "10", "notes");
+        addInventoryPage.addInventoryBin("binName", "1");
 
         contextualBar = new ContextualBar(driver);
         contextualBar.saveChanges();
